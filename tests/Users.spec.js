@@ -1,9 +1,9 @@
 import { test, expect, request as playwrightRequest } from '@playwright/test'
-import { UsersApi } from '../pages/usersApi.js'
+import { CrudApi } from '../pages/crudApi.js'
 
 test.describe.serial('CRUD /users - GoRest API com userId compartilhado', () => {
   const baseUrl = 'https://gorest.co.in/public/v2'
-  const token = '71781a83391801507edcbcef3da5140dec0ffeeda8b3f689e4650c53480edbaa'
+  const token = 'dfb6fda70f2391f935e81c6ba7eefe3fc68f25c1e2a964c609b5d0f51bbdd24b'
   let apiRequest
   let api
   let userId
@@ -16,12 +16,12 @@ test.describe.serial('CRUD /users - GoRest API com userId compartilhado', () => 
       extraHTTPHeaders: { Authorization: `Bearer ${token}` }
     })
 
-    api = new UsersApi(apiRequest, baseUrl, token)
+    api = new CrudApi(apiRequest, baseUrl, token)
 
     const response = await api.createUser({
-      name: 'Usuario TagPlus',
+      name: 'User TagPlus',
+      email: `tagPlusUser@teste.com`,
       gender: 'male',
-      email: `tagPlusUser@test.com`,
       status: 'active'
     })
 
@@ -35,7 +35,7 @@ test.describe.serial('CRUD /users - GoRest API com userId compartilhado', () => 
     console.log('Dados criados:', body)
 
     expect(body).toHaveProperty('id')
-    expect(body).toHaveProperty('name', 'Usuario TagPlus')
+    expect(body).toHaveProperty('name', 'User TagPlus')
     expect(body).toHaveProperty('email')
     expect(body).toHaveProperty('gender', 'male')
     expect(body).toHaveProperty('status', 'active')
