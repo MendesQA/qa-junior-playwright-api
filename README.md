@@ -20,3 +20,16 @@ Ele realiza testes CRUD nos endpoints da [GoRest API](https://gorest.co.in/) (`/
 ```bash
 git clone https://github.com/MendesQA/qa-junior-playwright-api.git
 cd qa-junior-playwright-api
+```
+2. Instale as dependências
+```bash
+npm install
+```
+3. Instale os browsers do Playwright
+```bash
+npx playwright test
+```
+4. Execute os testes
+```bash
+npx playwright test
+```
